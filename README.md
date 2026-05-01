@@ -4,7 +4,7 @@
 - 💞️ I’m looking to collaborate on Tridium Niagara, Java, Flutter
 - 📫 How to reach me Douglas.Forbes-Scott@3EC.co.uk
 - 😄 Pronouns: He, Him
-- ⚡ Fun fact: ...
+- ⚡ Fun fact: Simsalabim that is all!!
 
 <!---
 3EC-DEVELOPER/3EC-DEVELOPER is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
