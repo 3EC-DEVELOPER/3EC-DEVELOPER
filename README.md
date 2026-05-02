@@ -60,7 +60,7 @@ The broader BMS work spans control logic (function block, ladder, structured tex
 
 ## OEM Systems
 
-20+ years across a wide range of platforms. Not just configure-and-commission — actual software development, deep integration, and fault diagnosis at the firmware level on most of these.
+20+ years across a wide range of platforms. Not just configure-and-commission — actual software development, deep integration, and fault diagnosis at controller level across all of these.
 
 | | | | |
 |---|---|---|---|
