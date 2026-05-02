@@ -64,13 +64,13 @@ The broader BMS work spans control logic (function block, ladder, structured tex
 
 | | | | |
 |---|---|---|---|
-| Tridium / Niagara | Trend | Distech Controls | EasyIO |
-| FIN Framework | Honeywell / Centraline | Siemens | Delta Controls |
-| iSMA | Priva | ABB | Cylon |
-| Omron | KNX | Carlo Gavazzi | North |
-| Moxa | Tyrrell | Titan | OSS |
-| RDM | Mercato | INNON | ONTROL |
-| Arduino |
+| Tridium | Honeywell | Siemens | ABB |
+| Trend | Centraline | Distech | Delta |
+| FIN | Priva | EasyIO | KNX |
+| Omron | iSMA | Carlo Gavazzi | Moxa |
+| Cylon | North | OSS | Tyrrell |
+| Titan | RDM | Mercato | INNON |
+| ONTROL | | | |
 
 ---
 
