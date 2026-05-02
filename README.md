@@ -87,7 +87,7 @@ The broader BMS work spans control logic (function block, ladder, structured tex
 
 ## Currently building
 
-- Custom Niagara N4 modules in Java — control logic components for BMS system houses
+- Custom Niagara N4 & N5 modules in Java — control logic components for BMS system houses
 - Flutter BMS interface toolkit — cross-platform dashboards and control GUIs (HVAC, pump sets, fault management) targeting Android, iOS, Windows, and macOS from a single codebase
 - [3ec.co.uk](https://www.3ec.co.uk) — company site built in Flutter Web with Firebase, deployed to web
 
