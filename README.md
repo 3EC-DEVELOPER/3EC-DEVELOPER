@@ -96,8 +96,8 @@ The broader BMS work spans control logic (function block, ladder, structured tex
 ## GitHub Activity
 
 <p>
-  <img src="https://github-readme-stats.vercel.app/api?username=3EC-DEVELOPER&show_icons=true&theme=dark&hide_border=true&count_private=true&rank_icon=github" height="165" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=3EC-DEVELOPER&layout=compact&theme=dark&hide_border=true&langs_count=6" height="165" />
+  <img src="https://github-readme-stats-chi-flame-79.vercel.app/api?username=3EC-DEVELOPER&show_icons=true&theme=dark&hide_border=true&count_private=true&rank_icon=github" height="165" />
+  <img src="https://github-readme-stats-chi-flame-79.vercel.app/api/top-langs/?username=3EC-DEVELOPER&layout=compact&theme=dark&hide_border=true&langs_count=6" height="165" />
 </p>
 
 <p>
