@@ -15,8 +15,8 @@ The Niagara work is what pushed me properly into software. Years of fighting the
 
 **Languages**
 
-![Dart](https://img.shields.io/badge/Dart-0175C2?style=flat&logo=dart&logoColor=white)
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=flat&logo=openjdk&logoColor=white)
+![Dart](https://img.shields.io/badge/Dart-0175C2?style=flat&logo=dart&logoColor=white)
 ![Swift](https://img.shields.io/badge/Swift-FA7343?style=flat&logo=swift&logoColor=white)
 ![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=flat&logo=kotlin&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
@@ -90,6 +90,19 @@ The broader BMS work spans control logic (function block, ladder, structured tex
 - Custom Niagara N4 & N5 modules in Java — control logic components for BMS system houses
 - Flutter BMS interface toolkit — cross-platform dashboards and control GUIs (HVAC, pump sets, fault management) targeting Android, iOS, Windows, and macOS from a single codebase
 - [3ec.co.uk](https://www.3ec.co.uk) — company site built in Flutter Web with Firebase, deployed to web
+
+---
+
+## GitHub Activity
+
+<p>
+  <img src="https://github-readme-stats.vercel.app/api?username=3EC-DEVELOPER&show_icons=true&theme=dark&hide_border=true&count_private=true&rank_icon=github" height="165" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=3EC-DEVELOPER&layout=compact&theme=dark&hide_border=true&langs_count=6" height="165" />
+</p>
+
+<p>
+  <img src="https://streak-stats.demolab.com?user=3EC-DEVELOPER&theme=dark&hide_border=true&date_format=j%20M%5B%20Y%5D" />
+</p>
 
 ---
 
