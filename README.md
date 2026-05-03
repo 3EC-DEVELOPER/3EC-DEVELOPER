@@ -1,0 +1,128 @@
+# Douglas Forbes-Scott
+
+**Director & Lead Developer — [Three Energy Control Ltd (3EC)](https://www.3ec.co.uk)**  
+UK · South Africa · Brazil
+
+---
+
+My background isn't a traditional computer science route. I started as a panel wireman in South Africa — working on industrial PLC and MCC panels for the likes of Consol Glass, SAB Breweries, and Dulux Paints. After emigrating to the UK I moved into commercial building services, picked up BMS on a Goldman Sachs contract, and never looked back. Two decades later I run 3EC, where we do everything from Niagara module development and system integration through to cross-platform app development in Flutter.
+
+The Niagara work is what pushed me properly into software. Years of fighting the limits of native logic blocks led to getting Tridium-certified and learning to build what wasn't there. That same frustration is what now drives the Flutter and Android side of things — if the tool doesn't exist, build it.
+
+---
+
+## What I work with
+
+**Languages**
+
+![Java](https://img.shields.io/badge/Java-ED8B00?style=flat&logo=openjdk&logoColor=white)
+![Dart](https://img.shields.io/badge/Dart-0175C2?style=flat&logo=dart&logoColor=white)
+![Swift](https://img.shields.io/badge/Swift-FA7343?style=flat&logo=swift&logoColor=white)
+![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=flat&logo=kotlin&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-4479A1?style=flat&logo=postgresql&logoColor=white)
+
+**Frameworks & Platforms**
+
+![Flutter](https://img.shields.io/badge/Flutter-02569B?style=flat&logo=flutter&logoColor=white)
+![Android](https://img.shields.io/badge/Android-3DDC84?style=flat&logo=android&logoColor=white)
+![iOS](https://img.shields.io/badge/iOS-000000?style=flat&logo=apple&logoColor=white)
+![macOS](https://img.shields.io/badge/macOS-000000?style=flat&logo=apple&logoColor=white)
+![Windows](https://custom-icon-badges.demolab.com/badge/Windows-0078D4?style=flat&logo=windows11&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=firebase&logoColor=black)
+![Niagara](https://img.shields.io/badge/Niagara-0055A5?style=flat&logo=data:image/png;base64,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&logoColor=white)
+![FIN](https://img.shields.io/badge/FIN-F57C00?style=flat&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAHhlWElmTU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIAAIdpAAQAAAABAAAATgAAAAAAAABgAAAAAQAAAGAAAAABAAOgAQADAAAAAQABAACgAgAEAAAAAQAAACCgAwAEAAAAAQAAACAAAAAAcFS6AwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAApJJREFUWAnFl89LFVEUxx1T1Be1yYVUmwrUTUS7NunWhZAFLiKC/gIXbULCRUtB2rpyERVCISgiIgpupEVEP6iwTERQ++WiMkuf0ps+X5sXz3HOfT9mnh74vnvvOXO/33Nn7j0zz6vAfN+vo+kEl0GNXKAc5kGaBsPgsed5vyWeymQyY7T7beMIHvb40cofgYOwq5WoNh6EcqDZpATKZR8hHgdvHAJ+lSNYamiJiX1gkE22yiM+Tv8VqAd7LOkE7qFwG+GVHKVv9NdBWRNYQ+AmwgM5wtmu7kBDdhBuk7gDC5BeR/xJmDwYt9LWGrGKuAm8hLgT8fmwAM/+HL5u0BGO5Y7jnIKnELWHxRE+C/qJaT98By+AaaXegWcwdiD+KcuMqBZzDWjlk+AW8TX80/RNKyWBWdiu5IoH7Hp/jOC/rzHC1aCFbrPGlhX7CD5DpGeus77L8PlAp0HiXjqdPkW3GugFZFoxd0BvsRuIvDXZgoCSoTtHIl9onYt0BkNCPRBPhHz5hroDTis0gVFY7jqZooPbuLeiQ/+8hSTwlUu7WP0fF5ER28D/04jtuAtJ4A7iiy4SK8Y8rV4b17R8CTxnZlR9NwkjAh8ifP9d+RLoZRXa/XFM5do0VwLvmaXNF9dUsjMWiSuBIVavTRTXXkPwziJxJTBlTSrGHzzCh9YcKwGV1DlrkvxUuSpwBBwFKeAqOg+YshnFZ5ViHZ9f2QkSoX8anAd62zWBk0B+1XoVnA2u+0Grj9FloDelaojqxwUQmaCVwDEmDEK4QnsGSPwEOAQSNSsBraotUSWDzNoDxuWJuz0lYB6RxOX2Es5qN9eBYbDfNopgaudrhY7+kl8CF0Et0AdFOUx6Oo4zQJ9vm38BJqqe8+F+PW4AAAAASUVORK5CYII=&logoColor=white)
+
+**Tools & Environments**
+
+![Niagara Workbench](https://img.shields.io/badge/Niagara_Workbench-0055A5?style=flat&logo=data:image/png;base64,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&logoColor=white)
+![Eclipse](https://img.shields.io/badge/Eclipse-2C2255?style=flat&logo=eclipseide&logoColor=white)
+![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=flat&logo=data:image/png;base64,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&logoColor=white)
+![Xcode](https://img.shields.io/badge/Xcode-147EFB?style=flat&logo=xcode&logoColor=white)
+![Android Studio](https://img.shields.io/badge/Android_Studio-3DDC84?style=flat&logo=android-studio&logoColor=white)
+![IntelliJ IDEA](https://img.shields.io/badge/IntelliJ_IDEA-000000?style=flat&logo=intellijidea&logoColor=white)
+![Arduino IDE](https://img.shields.io/badge/Arduino_IDE-00979D?style=flat&logo=arduino&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white)
+![Blender](https://img.shields.io/badge/Blender-F5792A?style=flat&logo=blender&logoColor=white)
+![Figma](https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=figma&logoColor=white)
+![Sweet Home 3D](https://img.shields.io/badge/Sweet_Home_3D-4A90D9?style=flat&logo=data:image/png;base64,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&logoColor=white)
+![Photoshop](https://img.shields.io/badge/Photoshop-31A8FF?style=flat&logo=data:image/png;base64,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&logoColor=white)
+
+---
+
+## Niagara & BMS Development
+
+Tridium **N4 Certified Developer** and **PREM Developer** — listed on the [Niagara Marketplace](https://www.niagaramarketplace.com). Custom Niagara module development is a core part of what 3EC does, building bespoke Java-based components that extend the Niagara framework beyond what ships out of the box.
+
+The broader BMS work spans control logic (function block, ladder, structured text), protocol integration, and custom GUI design — whether that's a full supervisor dashboard, a touchscreen panel, or a handheld interface. Protocols covered include BACnet, Modbus, LON, M-Bus, Profibus, and KNX.
+
+---
+
+## OEM Systems
+
+20+ years across a wide range of platforms. Not just configure-and-commission — actual software development, deep integration, and fault diagnosis at controller level across all of these.
+
+| | | | |
+|---|---|---|---|
+| Tridium | Honeywell | Siemens | ABB |
+| Trend | Centraline | Distech | Delta |
+| FIN | Priva | EasyIO | KNX |
+| Omron | iSMA | Carlo Gavazzi | Moxa |
+| Cylon | North | OSS | Tyrrell |
+| Titan | RDM | Mercato | INNON |
+| ONTROL | | | |
+
+---
+
+## Certifications
+
+- Tridium PREM Developer — Niagara Marketplace Partner *(awarded April 2026)*
+- Tridium Niagara N4 Developer · Tridium Niagara AX
+- Trend: System Engineering · Strategy Design · IQ3 · IQ · 963 Engineering · Trend Expert 1
+- Honeywell Centraline: Partnership · Niagara AX→NX · Lynx
+- Distech: ECNet AX · Eclypse · Eclypse Envision
+- EasyIO: CPTFG · EasyStack
+- FIN Framework: FIN5 Technician
+- ABB: Unitron UC32 · Aspect System Engineering
+- Omron: OC1 Basic PLC · OC2 Advanced PLC
+- KNX Basic
+- Priva: Compri HX · Blue ID
+- Automated Logic WebCTRL
+- BCIA Technical Certificate · BCIA Advanced Technical Certificate
+- ASHRAE Member
+- BCM01–BCM06 (HVAC/BTC Fundamentals through Cooling Systems)
+- CIW Professional · CIW Associate
+- Flutter Developer (2020)
+- N1–N4 National Certificates (South Africa) · N5 Engineering (equivalent UK HND)
+
+---
+
+## Currently building
+
+- Custom Niagara N4 & N5 modules in Java — control logic components for BMS system houses
+- Flutter BMS interface toolkit — cross-platform dashboards and control GUIs (HVAC, pump sets, fault management) targeting Android, iOS, Windows, and macOS from a single codebase
+- [3EC.co.uk](https://www.3ec.co.uk) — company site built in Flutter Web with Firebase, deployed to web
+
+---
+
+## GitHub Activity
+
+<p>
+  <img src="https://github-readme-stats-chi-flame-79.vercel.app/api?username=3EC-DEVELOPER&show_icons=true&theme=dark&hide_border=true&count_private=true&rank_icon=github" height="165" />
+  <img src="https://github-readme-stats-chi-flame-79.vercel.app/api/top-langs/?username=3EC-DEVELOPER&layout=compact&theme=dark&hide_border=true&langs_count=6" height="165" />
+</p>
+
+<p>
+  <img src="https://streak-stats.demolab.com?user=3EC-DEVELOPER&theme=dark&hide_border=true&date_format=j%20M%5B%20Y%5D" />
+</p>
+
+---
+
+## Get in touch
+
+- **Web:** [www.3EC.co.uk](https://www.3ec.co.uk)
+- **Email:** Douglas.Forbes-Scott@3EC.co.uk
+- **Operates in:** United Kingdom · South Africa · Brazil
