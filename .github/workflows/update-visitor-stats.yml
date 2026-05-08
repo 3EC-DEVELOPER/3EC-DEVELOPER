@@ -141,7 +141,12 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "chore: update visitor analytics [skip ci]"
-            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
+            # Pull latest changes before pushing
+            git pull --no-rebase origin main || true
+
+            # Push with token
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
