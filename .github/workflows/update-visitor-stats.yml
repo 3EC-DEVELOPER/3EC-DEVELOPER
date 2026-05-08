@@ -42,20 +42,8 @@ jobs:
           with open('README.md', 'r') as f:
             content = f.read()
 
-          analytics_section = f"""## Visitor Analytics
+          analytics_section = "## Visitor Analytics\n\nTrack visitor engagement on my GitHub profile. These stats are updated hourly.\n\n<div align=\"center\">\n\n![Visitors](https://img.shields.io/badge/Visitors-" + total + "-blue?style=flat-square&logo=github)\n![Unique](https://img.shields.io/badge/Unique%20Visitors-" + unique + "-green?style=flat-square&logo=github)\n\n[View detailed analytics](https://douglasforbesscott.goatcounter.com)\n\n</div>"
 
-Track visitor engagement on my GitHub profile. These stats are updated hourly.
-
-<div align="center">
-
-![Visitors](https://img.shields.io/badge/Visitors-{total}-blue?style=flat-square&logo=github)
-![Unique](https://img.shields.io/badge/Unique%20Visitors-{unique}-green?style=flat-square&logo=github)
-
-[View detailed analytics](https://douglasforbesscott.goatcounter.com)
-
-</div>"""
-
-          # Replace or add Visitor Analytics section
           if '## Visitor Analytics' in content:
             content = re.sub(
               r'## Visitor Analytics\n.*?\n\</div\>',
@@ -66,7 +54,7 @@ Track visitor engagement on my GitHub profile. These stats are updated hourly.
           else:
             content = content.replace(
               '## Get in touch',
-              f'{analytics_section}\n\n## Get in touch'
+              analytics_section + '\n\n## Get in touch'
             )
 
           with open('README.md', 'w') as f:
