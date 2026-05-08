@@ -123,23 +123,7 @@ The broader BMS work spans control logic (function block, ladder, structured tex
 
 ## Visitor Analytics
 
-Profile analytics powered by [GoatCounter](https://www.goatcounter.com) — privacy-friendly, no tracking of personal data.
-
-<p>
-  <a href="https://douglasforbesscott.goatcounter.com/" target="_blank">
-    <img src="https://img.shields.io/badge/Profile_Views-Live_Dashboard-2C3E50?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTAtNC40OC0xMC0xMC0xMHptMCAxOGMtNC40IDAtOC0zLjYtOC04czMuNi04IDgtOCA4IDMuNiA4IDgtMy42IDgtOCA4em0tMi0xM2gtNHYxMGg0di0xMHptMCA0aDR2LTRoLTR2NHptNiA5aC00djEwaDR2LTEwem0wLTZoLTR2Nmg0di02em02LTNoLTR2OWg0di05eiIvPjwvc3ZnPg==&logoColor=white" />
-  </a>
-  <img src="https://img.shields.io/badge/Tracking_Active-GoatCounter-4ECDC4?style=flat" />
-</p>
-
-**Dashboard includes:**
-- Total visitors and unique visitors
-- Daily visit statistics
-- Referrer breakdown (including LinkedIn traffic)
-- Browser and system information
-- Geographic distribution
-
-Visit the [GoatCounter dashboard](https://douglasforbesscott.goatcounter.com/) for detailed analytics and real-time visitor information.
+<div style="display:inline-block;min-width:140px;padding:1.5rem;border-radius:8px;border:0.5px solid #ddd;margin:0 0.5rem;text-align:center;"><div style="font-size:28px;margin-bottom:0.75rem;">👁️</div><p style="margin:0 0 0.5rem 0;font-size:12px;font-weight:500;text-transform:uppercase;color:#666;">Total Visitors</p><p style="margin:0;font-size:32px;font-weight:500;color:#000;">0</p></div><div style="display:inline-block;min-width:140px;padding:1.5rem;border-radius:8px;border:0.5px solid #ddd;margin:0 0.5rem;text-align:center;"><div style="font-size:28px;margin-bottom:0.75rem;">👤</div><p style="margin:0 0 0.5rem 0;font-size:12px;font-weight:500;text-transform:uppercase;color:#666;">Unique</p><p style="margin:0;font-size:32px;font-weight:500;color:#000;">0</p></div><div style="display:inline-block;min-width:140px;padding:1.5rem;border-radius:8px;border:0.5px solid #ddd;margin:0 0.5rem;text-align:center;"><div style="font-size:28px;margin-bottom:0.75rem;">🔗</div><p style="margin:0 0 0.5rem 0;font-size:12px;font-weight:500;text-transform:uppercase;color:#666;">LinkedIn</p><p style="margin:0;font-size:32px;font-weight:500;color:#000;"></p></div><div style="display:inline-block;min-width:140px;padding:1.5rem;border-radius:8px;border:0.5px solid #ddd;margin:0 0.5rem;text-align:center;"><div style="font-size:28px;margin-bottom:0.75rem;">📊</div><p style="margin:0 0 0.5rem 0;font-size:12px;font-weight:500;text-transform:uppercase;color:#666;">Daily Avg</p><p style="margin:0;font-size:32px;font-weight:500;color:#000;">0</p></div>
 
 ---
 
