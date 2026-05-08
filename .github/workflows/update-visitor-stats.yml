@@ -8,36 +8,33 @@ on:
 jobs:
   update-stats:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Fetch visitor stats from GoatCounter
+      - name: Fetch visitor stats from GitHub Traffic API
         id: fetch-stats
         run: |
-          STATS=$(curl -s -w "\n%{http_code}" -H "Authorization: Bearer ${{ secrets.GOATCOUNTER_API_TOKEN }}" \
-            "https://douglasforbesscott.goatcounter.com/api/v0/stats/")
+          VIEWS=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/3EC-DEVELOPER/3EC-DEVELOPER/traffic/views")
 
-          HTTP_CODE=$(echo "$STATS" | tail -n1)
-          STATS_DATA=$(echo "$STATS" | head -n-1)
+          REFERRERS=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/3EC-DEVELOPER/3EC-DEVELOPER/traffic/popular/referrers")
 
-          echo "Stats HTTP Code: $HTTP_CODE"
-          echo "Stats Response: $STATS_DATA"
+          echo "Views response: $VIEWS"
+          echo "Referrers response: $REFERRERS"
 
-          REFERRERS=$(curl -s -w "\n%{http_code}" -H "Authorization: Bearer ${{ secrets.GOATCOUNTER_API_TOKEN }}" \
-            "https://douglasforbesscott.goatcounter.com/api/v0/stats/referrers")
-
-          REF_HTTP_CODE=$(echo "$REFERRERS" | tail -n1)
-          REFERRERS_DATA=$(echo "$REFERRERS" | head -n-1)
-
-          echo "Referrers HTTP Code: $REF_HTTP_CODE"
-          echo "Referrers Response: $REFERRERS_DATA"
-
-          TOTAL_VISITORS=$(echo "$STATS_DATA" | jq -r 'map(.count) | add // 0' 2>/dev/null || echo "0")
-          UNIQUE_VISITORS=$(echo "$STATS_DATA" | jq -r 'map(.unique_count) | add // 0' 2>/dev/null || echo "0")
-          LINKEDIN_REFS=$(echo "$REFERRERS_DATA" | jq -r '[.[] | select(.referrer | contains("linkedin")) | .count] | add // 0' 2>/dev/null || echo "0")
-          DAYS=$(echo "$STATS_DATA" | jq -r 'length // 1' 2>/dev/null || echo "1")
+          TOTAL_VISITORS=$(echo "$VIEWS" | jq -r '.count // 0')
+          UNIQUE_VISITORS=$(echo "$VIEWS" | jq -r '.uniques // 0')
+          LINKEDIN_REFS=$(echo "$REFERRERS" | jq -r '[.[] | select(.referrer | ascii_downcase | contains("linkedin")) | .count] | add // 0')
+          DAYS=$(echo "$VIEWS" | jq -r '(.views | length) // 1')
 
           if [ "$DAYS" -gt 0 ] && [ "$TOTAL_VISITORS" -gt 0 ]; then
             DAILY_AVG=$(echo "scale=1; $TOTAL_VISITORS / $DAYS" | bc 2>/dev/null || echo "0")
