@@ -16,21 +16,34 @@ jobs:
       - name: Fetch visitor stats from GoatCounter
         id: fetch-stats
         run: |
-          RESPONSE=$(curl -s -H "Authorization: Bearer ${{ secrets.GOATCOUNTER_API_TOKEN }}" \
+          STATS=$(curl -s -H "Authorization: Bearer ${{ secrets.GOATCOUNTER_API_TOKEN }}" \
             "https://douglasforbesscott.goatcounter.com/api/v0/stats")
 
-          echo "API Response: $RESPONSE"
+          REFERRERS=$(curl -s -H "Authorization: Bearer ${{ secrets.GOATCOUNTER_API_TOKEN }}" \
+            "https://douglasforbesscott.goatcounter.com/api/v0/stats/referrers")
 
-          TOTAL_VISITORS=$(echo "$RESPONSE" | jq -r '.[0].count // 0' 2>/dev/null || echo "0")
-          UNIQUE_VISITORS=$(echo "$RESPONSE" | jq -r 'length // 0' 2>/dev/null || echo "0")
+          echo "Stats Response: $STATS"
+          echo "Referrers Response: $REFERRERS"
+
+          TOTAL_VISITORS=$(echo "$STATS" | jq -r '.[0].count // 0' 2>/dev/null || echo "0")
+          UNIQUE_VISITORS=$(echo "$STATS" | jq -r 'map(.unique_count) | add // 0' 2>/dev/null || echo "0")
+          LINKEDIN_REFS=$(echo "$REFERRERS" | jq -r '.[] | select(.referrer | contains("linkedin")) | .count // 0' 2>/dev/null | awk '{s+=$1} END {print s}' || echo "0")
+          DAYS=$(echo "$STATS" | jq -r 'length // 1' 2>/dev/null || echo "1")
+          DAILY_AVG=$(echo "scale=1; $TOTAL_VISITORS / $DAYS" | bc 2>/dev/null || echo "0")
 
           echo "total_visitors=$TOTAL_VISITORS" >> $GITHUB_OUTPUT
           echo "unique_visitors=$UNIQUE_VISITORS" >> $GITHUB_OUTPUT
+          echo "linkedin_refs=$LINKEDIN_REFS" >> $GITHUB_OUTPUT
+          echo "daily_avg=$DAILY_AVG" >> $GITHUB_OUTPUT
+
+          echo "Total: $TOTAL_VISITORS, Unique: $UNIQUE_VISITORS, LinkedIn: $LINKEDIN_REFS, Daily: $DAILY_AVG"
 
       - name: Update README
         env:
           TOTAL_VISITORS: ${{ steps.fetch-stats.outputs.total_visitors }}
           UNIQUE_VISITORS: ${{ steps.fetch-stats.outputs.unique_visitors }}
+          LINKEDIN_REFS: ${{ steps.fetch-stats.outputs.linkedin_refs }}
+          DAILY_AVG: ${{ steps.fetch-stats.outputs.daily_avg }}
         run: |
           python3 << 'EOF'
           import re
@@ -38,11 +51,15 @@ jobs:
 
           total = os.environ.get('TOTAL_VISITORS', '0')
           unique = os.environ.get('UNIQUE_VISITORS', '0')
+          linkedin = os.environ.get('LINKEDIN_REFS', '0')
+          daily = os.environ.get('DAILY_AVG', '0')
 
           with open('README.md', 'r') as f:
             content = f.read()
 
-          analytics_section = "## Visitor Analytics\n\n<div align=\"center\">\n\n![Visitors](https://img.shields.io/badge/Visitors-" + total + "-blue?style=flat-square)\n![Unique](https://img.shields.io/badge/Unique-" + unique + "-green?style=flat-square)\n\n[GoatCounter Dashboard](https://douglasforbesscott.goatcounter.com)\n\n</div>"
+          analytics_section = """## Visitor Analytics
+
+<table><tr><td align="center"><div style="min-width: 140px; padding: 1.5rem; border-radius: 8px; border: 0.5px solid #ddd;"><div style="font-size: 28px; margin-bottom: 0.75rem;">👁️</div><p style="margin: 0 0 0.5rem 0; font-size: 12px; font-weight: 500; text-transform: uppercase; color: #666;">Total Visitors</p><p style="margin: 0; font-size: 32px; font-weight: 500; color: #000;">""" + total + """</p></div></td><td align="center"><div style="min-width: 140px; padding: 1.5rem; border-radius: 8px; border: 0.5px solid #ddd;"><div style="font-size: 28px; margin-bottom: 0.75rem;">👤</div><p style="margin: 0 0 0.5rem 0; font-size: 12px; font-weight: 500; text-transform: uppercase; color: #666;">Unique</p><p style="margin: 0; font-size: 32px; font-weight: 500; color: #000;">""" + unique + """</p></div></td><td align="center"><div style="min-width: 140px; padding: 1.5rem; border-radius: 8px; border: 0.5px solid #ddd;"><div style="font-size: 28px; margin-bottom: 0.75rem;">🔗</div><p style="margin: 0 0 0.5rem 0; font-size: 12px; font-weight: 500; text-transform: uppercase; color: #666;">LinkedIn</p><p style="margin: 0; font-size: 32px; font-weight: 500; color: #000;">""" + linkedin + """</p></div></td><td align="center"><div style="min-width: 140px; padding: 1.5rem; border-radius: 8px; border: 0.5px solid #ddd;"><div style="font-size: 28px; margin-bottom: 0.75rem;">📊</div><p style="margin: 0 0 0.5rem 0; font-size: 12px; font-weight: 500; text-transform: uppercase; color: #666;">Daily Avg</p><p style="margin: 0; font-size: 32px; font-weight: 500; color: #000;">""" + daily + """</p></div></td></tr></table>"""
 
           if '## Visitor Analytics' in content:
             start = content.find('## Visitor Analytics')
