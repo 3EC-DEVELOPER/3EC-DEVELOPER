@@ -21,130 +21,69 @@ jobs:
 
           echo "API Response: $RESPONSE"
 
-          # Check if response is valid JSON
-          if ! echo "$RESPONSE" | grep -q '{'; then
-            echo "Warning: Invalid API response. Using default values."
-            echo "total_visitors=0" >> $GITHUB_OUTPUT
-            echo "unique_visitors=0" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-
-          TOTAL_VISITORS=$(echo "$RESPONSE" | jq -r '.[0].count // 0')
-          UNIQUE_VISITORS=$(echo "$RESPONSE" | jq -r 'length // 0')
+          TOTAL_VISITORS=$(echo "$RESPONSE" | jq -r '.[0].count // 0' 2>/dev/null || echo "0")
+          UNIQUE_VISITORS=$(echo "$RESPONSE" | jq -r 'length // 0' 2>/dev/null || echo "0")
 
           echo "total_visitors=$TOTAL_VISITORS" >> $GITHUB_OUTPUT
           echo "unique_visitors=$UNIQUE_VISITORS" >> $GITHUB_OUTPUT
 
-          echo "Total Visitors: $TOTAL_VISITORS"
-          echo "Unique Visitors: $UNIQUE_VISITORS"
-
-      - name: Generate visitor stats badges
-        id: generate-badges
+      - name: Update README
+        env:
+          TOTAL_VISITORS: ${{ steps.fetch-stats.outputs.total_visitors }}
+          UNIQUE_VISITORS: ${{ steps.fetch-stats.outputs.unique_visitors }}
         run: |
-          TOTAL=${{ steps.fetch-stats.outputs.total_visitors }}
-          UNIQUE=${{ steps.fetch-stats.outputs.unique_visitors }}
+          python3 << 'EOF'
+          import re
+          import os
 
-          # Create temporary file with badge HTML
-          cat > /tmp/badges.txt << 'EOF'
-          [![Visitors](https://img.shields.io/badge/Visitors-TOTAL-blue?style=flat-square&logo=github)](https://douglasforbesscott.goatcounter.com)
-          [![Unique](https://img.shields.io/badge/Unique%20Visitors-UNIQUE-green?style=flat-square&logo=github)](https://douglasforbesscott.goatcounter.com)
+          total = os.environ.get('TOTAL_VISITORS', '0')
+          unique = os.environ.get('UNIQUE_VISITORS', '0')
+
+          with open('README.md', 'r') as f:
+            content = f.read()
+
+          analytics_section = f"""## Visitor Analytics
+
+Track visitor engagement on my GitHub profile. These stats are updated hourly.
+
+<div align="center">
+
+![Visitors](https://img.shields.io/badge/Visitors-{total}-blue?style=flat-square&logo=github)
+![Unique](https://img.shields.io/badge/Unique%20Visitors-{unique}-green?style=flat-square&logo=github)
+
+[View detailed analytics](https://douglasforbesscott.goatcounter.com)
+
+</div>"""
+
+          # Replace or add Visitor Analytics section
+          if '## Visitor Analytics' in content:
+            content = re.sub(
+              r'## Visitor Analytics\n.*?\n\</div\>',
+              analytics_section,
+              content,
+              flags=re.DOTALL
+            )
+          else:
+            content = content.replace(
+              '## Get in touch',
+              f'{analytics_section}\n\n## Get in touch'
+            )
+
+          with open('README.md', 'w') as f:
+            f.write(content)
+
+          print("README updated successfully")
           EOF
-
-          # Replace placeholders
-          sed -i "s/TOTAL/$TOTAL/" /tmp/badges.txt
-          sed -i "s/UNIQUE/$UNIQUE/" /tmp/badges.txt
-
-          BADGES=$(cat /tmp/badges.txt)
-          echo "badges<<EOF" >> $GITHUB_OUTPUT
-          echo "$BADGES" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-
-      - name: Update README with visitor stats
-        run: |
-          # Read current README
-          README_FILE="README.md"
-
-          # Create temporary file
-          TEMP_FILE=$(mktemp)
-
-          # Check if Visitor Analytics section exists
-          if grep -q "## Visitor Analytics" "$README_FILE"; then
-            # Extract everything before Visitor Analytics
-            sed '/## Visitor Analytics/q' "$README_FILE" | head -n -1 > "$TEMP_FILE"
-
-            # Add updated Visitor Analytics section
-            cat >> "$TEMP_FILE" << 'EOF'
-          ## Visitor Analytics
-
-          Track visitor engagement on my GitHub profile. These stats are updated hourly.
-
-          <div align="center">
-
-          ![Visitors](https://img.shields.io/badge/Visitors-${{ steps.fetch-stats.outputs.total_visitors }}-blue?style=flat-square&logo=github)
-          ![Unique](https://img.shields.io/badge/Unique%20Visitors-${{ steps.fetch-stats.outputs.unique_visitors }}-green?style=flat-square&logo=github)
-
-          [View detailed analytics](https://douglasforbesscott.goatcounter.com)
-
-          </div>
-
-          EOF
-
-            # Add everything after Visitor Analytics (excluding Get in touch and before)
-            SKIP_NEXT=true
-            while IFS= read -r line; do
-              if [ "$SKIP_NEXT" = true ]; then
-                if [[ "$line" == "## "* ]] && [ "$line" != "## Visitor Analytics" ]; then
-                  SKIP_NEXT=false
-                fi
-              fi
-
-              if [ "$SKIP_NEXT" = false ]; then
-                echo "$line" >> "$TEMP_FILE"
-              fi
-            done < "$README_FILE"
-          else
-            # Visitor Analytics section doesn't exist, add it before "Get in touch"
-            sed '/## Get in touch/q' "$README_FILE" | head -n -1 > "$TEMP_FILE"
-
-            cat >> "$TEMP_FILE" << 'EOF'
-
-          ## Visitor Analytics
-
-          Track visitor engagement on my GitHub profile. These stats are updated hourly.
-
-          <div align="center">
-
-          ![Visitors](https://img.shields.io/badge/Visitors-${{ steps.fetch-stats.outputs.total_visitors }}-blue?style=flat-square&logo=github)
-          ![Unique](https://img.shields.io/badge/Unique%20Visitors-${{ steps.fetch-stats.outputs.unique_visitors }}-green?style=flat-square&logo=github)
-
-          [View detailed analytics](https://douglasforbesscott.goatcounter.com)
-
-          </div>
-
-          EOF
-
-            # Add Get in touch and everything after
-            sed -n '/## Get in touch/,$p' "$README_FILE" >> "$TEMP_FILE"
-          fi
-
-          # Replace temp file with updated README
-          mv "$TEMP_FILE" "$README_FILE"
 
       - name: Commit and push changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
 
-          git add README.md
-
-          # Check if there are changes to commit
-          if git diff --cached --quiet; then
+          if git diff --quiet README.md; then
             echo "No changes to commit"
           else
+            git add README.md
             git commit -m "chore: update visitor analytics [skip ci]"
-
-            # Use force-with-lease for safe force push
-            git push --force-with-lease https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+            git push
           fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
