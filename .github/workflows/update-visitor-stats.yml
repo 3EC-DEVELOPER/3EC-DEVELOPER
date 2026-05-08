@@ -77,8 +77,8 @@ Track visitor engagement on my GitHub profile. These stats are updated hourly.
 
       - name: Commit and push changes
         run: |
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git config user.name "github-actions[bot]"
+          git config user.email "Douglas.Forbes-Scott@3ec.co.uk"
+          git config user.name "Douglas Forbes-Scott"
 
           if git diff --quiet README.md; then
             echo "No changes to commit"
