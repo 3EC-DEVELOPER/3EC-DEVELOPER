@@ -134,10 +134,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git config --local credential.helper store
-
-          # Store credentials
-          echo "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com" > ~/.git-credentials
 
           git add README.md
 
@@ -147,12 +143,8 @@ jobs:
           else
             git commit -m "chore: update visitor analytics [skip ci]"
 
-            # Fetch latest and merge
-            git fetch origin main
-            git merge origin/main --allow-unrelated-histories -m "merge: sync with remote changes"
-
-            # Push
-            git push origin main
+            # Use force-with-lease for safe force push
+            git push --force-with-lease https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
