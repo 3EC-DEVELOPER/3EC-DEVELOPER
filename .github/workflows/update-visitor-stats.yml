@@ -16,7 +16,6 @@ jobs:
       - name: Fetch visitor stats from GoatCounter
         id: fetch-stats
         run: |
-          # Fetch stats with proper error handling
           STATS=$(curl -s -w "\n%{http_code}" -H "Authorization: Bearer ${{ secrets.GOATCOUNTER_API_TOKEN }}" \
             "https://douglasforbesscott.goatcounter.com/api/v0/stats/")
 
@@ -35,7 +34,6 @@ jobs:
           echo "Referrers HTTP Code: $REF_HTTP_CODE"
           echo "Referrers Response: $REFERRERS_DATA"
 
-          # Parse stats - handle array response
           TOTAL_VISITORS=$(echo "$STATS_DATA" | jq -r 'map(.count) | add // 0' 2>/dev/null || echo "0")
           UNIQUE_VISITORS=$(echo "$STATS_DATA" | jq -r 'map(.unique_count) | add // 0' 2>/dev/null || echo "0")
           LINKEDIN_REFS=$(echo "$REFERRERS_DATA" | jq -r '[.[] | select(.referrer | contains("linkedin")) | .count] | add // 0' 2>/dev/null || echo "0")
@@ -52,9 +50,7 @@ jobs:
           echo "linkedin_refs=$LINKEDIN_REFS" >> $GITHUB_OUTPUT
           echo "daily_avg=$DAILY_AVG" >> $GITHUB_OUTPUT
 
-          echo "Parsed - Total: $TOTAL_VISITORS, Unique: $UNIQUE_VISITORS, LinkedIn: $LINKEDIN_REFS, Days: $DAYS, Daily Avg: $DAILY_AVG"
-
-      - name: Update README
+      - name: Generate visitor stats SVG
         env:
           TOTAL_VISITORS: ${{ steps.fetch-stats.outputs.total_visitors }}
           UNIQUE_VISITORS: ${{ steps.fetch-stats.outputs.unique_visitors }}
@@ -62,7 +58,6 @@ jobs:
           DAILY_AVG: ${{ steps.fetch-stats.outputs.daily_avg }}
         run: |
           python3 << 'PYTHON_EOF'
-          import re
           import os
 
           total = os.environ.get('TOTAL_VISITORS', '0')
@@ -70,41 +65,45 @@ jobs:
           linkedin = os.environ.get('LINKEDIN_REFS', '0')
           daily = os.environ.get('DAILY_AVG', '0')
 
-          with open('README.md', 'r') as f:
-            content = f.read()
+          def card_font_size(value):
+              return 40 if len(str(value)) <= 4 else 32 if len(str(value)) <= 6 else 24
 
-          # Build the analytics section
-          analytics_section = (
-              '## Visitor Analytics\n\n'
-              '| 👁️ Total | 👤 Unique | 🔗 LinkedIn | 📊 Daily |\n'
-              '|:---:|:---:|:---:|:---:|\n'
-              f'| {total} | {unique} | {linkedin} | {daily} |'
-          )
+          cards = [
+              ('👁️', 'TOTAL VISITORS', total,  108),
+              ('👤', 'UNIQUE',         unique,  311),
+              ('🔗', 'LINKEDIN',       linkedin, 514),
+              ('📊', 'DAILY AVG',      daily,   717),
+          ]
 
-          # Find and replace the analytics section
-          if '## Visitor Analytics' in content:
-              # Match from ## Visitor Analytics to the next --- or ## Get in touch
-              pattern = r'(## Visitor Analytics\n\n.*?)(?=\n---|\n## Get in touch)'
-              content = re.sub(pattern, analytics_section, content, count=1, flags=re.DOTALL)
-          else:
-              # If section doesn't exist, add it before Get in touch
-              content = content.replace('## Get in touch', analytics_section + '\n\n---\n\n## Get in touch')
+          card_rects = ''
+          for i, (icon, label, value, cx) in enumerate(cards):
+              x = 12 + i * 203
+              fs = card_font_size(value)
+              card_rects += f'''
+            <rect x="{x}" y="12" width="193" height="151" rx="8" fill="#252c37"/>
+            <text x="{cx}" y="57" text-anchor="middle" font-size="26" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,sans-serif">{icon}</text>
+            <text x="{cx}" y="84" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10" fill="#8b949e" letter-spacing="1.5" font-weight="600">{label}</text>
+            <text x="{cx}" y="{132 if fs == 40 else 136}" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="{fs}" font-weight="700" fill="#f0f6fc">{value}</text>'''
 
-          with open('README.md', 'w') as f:
-              f.write(content)
+          svg = f'''<svg width="830" height="175" viewBox="0 0 830 175" xmlns="http://www.w3.org/2000/svg">
+            <rect width="830" height="175" rx="12" fill="#1b1f24"/>{card_rects}
+          </svg>'''
 
-          print(f"README updated: Total={total}, Unique={unique}, LinkedIn={linkedin}, Daily={daily}")
+          with open('assets/visitor-stats.svg', 'w') as f:
+              f.write(svg)
+
+          print(f"SVG generated: Total={total}, Unique={unique}, LinkedIn={linkedin}, Daily={daily}")
           PYTHON_EOF
 
-      - name: Commit and push changes
+      - name: Commit and push SVG
         run: |
           git config user.email "Douglas.Forbes-Scott@3ec.co.uk"
           git config user.name "Douglas Forbes-Scott"
 
-          if git diff --quiet README.md; then
+          if git diff --quiet assets/visitor-stats.svg; then
             echo "No changes to commit"
           else
-            git add README.md
+            git add assets/visitor-stats.svg
             git commit -m "chore: update visitor analytics [skip ci]"
             git push
           fi
