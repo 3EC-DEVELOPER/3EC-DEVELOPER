@@ -38,6 +38,8 @@ jobs:
 
           if [ "$DAYS" -gt 0 ] && [ "$TOTAL_VISITORS" -gt 0 ]; then
             DAILY_AVG=$(echo "scale=1; $TOTAL_VISITORS / $DAYS" | bc 2>/dev/null || echo "0")
+            # bc omits leading zero for values < 1 (e.g. .2) — add it back
+            [[ "$DAILY_AVG" == .* ]] && DAILY_AVG="0$DAILY_AVG"
           else
             DAILY_AVG="0"
           fi
