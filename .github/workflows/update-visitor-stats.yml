@@ -57,9 +57,7 @@ jobs:
           with open('README.md', 'r') as f:
             content = f.read()
 
-          card_html = '<div style="display:inline-block;min-width:140px;padding:1.5rem;border-radius:8px;border:0.5px solid #ddd;margin:0 0.5rem;text-align:center;"><div style="font-size:28px;margin-bottom:0.75rem;">'
-
-          analytics_section = '## Visitor Analytics\n\n' + card_html + '👁️</div><p style="margin:0 0 0.5rem 0;font-size:12px;font-weight:500;text-transform:uppercase;color:#666;">Total Visitors</p><p style="margin:0;font-size:32px;font-weight:500;color:#000;">' + total + '</p></div>' + card_html + '👤</div><p style="margin:0 0 0.5rem 0;font-size:12px;font-weight:500;text-transform:uppercase;color:#666;">Unique</p><p style="margin:0;font-size:32px;font-weight:500;color:#000;">' + unique + '</p></div>' + card_html + '🔗</div><p style="margin:0 0 0.5rem 0;font-size:12px;font-weight:500;text-transform:uppercase;color:#666;">LinkedIn</p><p style="margin:0;font-size:32px;font-weight:500;color:#000;">' + linkedin + '</p></div>' + card_html + '📊</div><p style="margin:0 0 0.5rem 0;font-size:12px;font-weight:500;text-transform:uppercase;color:#666;">Daily Avg</p><p style="margin:0;font-size:32px;font-weight:500;color:#000;">' + daily + '</p></div>'
+          analytics_section = '## Visitor Analytics\n\n| 👁️ Total Visitors | 👤 Unique | 🔗 LinkedIn | 📊 Daily Avg |\n|---|---|---|---|\n| ' + total + ' | ' + unique + ' | ' + linkedin + ' | ' + daily + ' |'
 
           if '## Visitor Analytics' in content:
             start = content.find('## Visitor Analytics')
