@@ -42,15 +42,14 @@ jobs:
           with open('README.md', 'r') as f:
             content = f.read()
 
-          analytics_section = "## Visitor Analytics\n\nTrack visitor engagement on my GitHub profile. These stats are updated hourly.\n\n<div align=\"center\">\n\n![Visitors](https://img.shields.io/badge/Visitors-" + total + "-blue?style=flat-square&logo=github)\n![Unique](https://img.shields.io/badge/Unique%20Visitors-" + unique + "-green?style=flat-square&logo=github)\n\n[View detailed analytics](https://douglasforbesscott.goatcounter.com)\n\n</div>"
+          analytics_section = "## Visitor Analytics\n\n<div align=\"center\">\n\n![Visitors](https://img.shields.io/badge/Visitors-" + total + "-blue?style=flat-square)\n![Unique](https://img.shields.io/badge/Unique-" + unique + "-green?style=flat-square)\n\n[GoatCounter Dashboard](https://douglasforbesscott.goatcounter.com)\n\n</div>"
 
           if '## Visitor Analytics' in content:
-            content = re.sub(
-              r'## Visitor Analytics\n.*?\n\</div\>',
-              analytics_section,
-              content,
-              flags=re.DOTALL
-            )
+            start = content.find('## Visitor Analytics')
+            end = content.find('---', start)
+            if end == -1:
+              end = content.find('## Get in touch', start)
+            content = content[:start] + analytics_section + '\n\n' + content[end:]
           else:
             content = content.replace(
               '## Get in touch',
