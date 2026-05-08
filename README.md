@@ -121,8 +121,35 @@ The broader BMS work spans control logic (function block, ladder, structured tex
 
 ---
 
+## Visitor Analytics
+
+Profile analytics powered by [GoatCounter](https://www.goatcounter.com) — privacy-friendly, no tracking of personal data.
+
+<p>
+  <a href="https://douglasforbesscott.goatcounter.com/" target="_blank">
+    <img src="https://img.shields.io/badge/Profile_Views-Live_Dashboard-2C3E50?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTAtNC40OC0xMC0xMC0xMHptMCAxOGMtNC40IDAtOC0zLjYtOC04czMuNi04IDgtOCA4IDMuNiA4IDgtMy42IDgtOCA4em0tMi0xM2gtNHYxMGg0di0xMHptMCA0aDR2LTRoLTR2NHptNiA5aC00djEwaDR2LTEwem0wLTZoLTR2Nmg0di02em02LTNoLTR2OWg0di05eiIvPjwvc3ZnPg==&logoColor=white" />
+  </a>
+  <img src="https://img.shields.io/badge/Tracking_Active-GoatCounter-4ECDC4?style=flat" />
+</p>
+
+**Dashboard includes:**
+- Total visitors and unique visitors
+- Daily visit statistics
+- Referrer breakdown (including LinkedIn traffic)
+- Browser and system information
+- Geographic distribution
+
+Visit the [GoatCounter dashboard](https://douglasforbesscott.goatcounter.com/) for detailed analytics and real-time visitor information.
+
+---
+
 ## Get in touch
 
 - **Web:** [www.3EC.co.uk](https://www.3ec.co.uk)
 - **Email:** Douglas.Forbes-Scott@3EC.co.uk
 - **Operates in:** United Kingdom · South Africa · Brazil
+
+---
+
+<!-- GoatCounter Analytics Tracking -->
+<script data-goatcounter="https://douglasforbesscott.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
