@@ -16,27 +16,43 @@ jobs:
       - name: Fetch visitor stats from GoatCounter
         id: fetch-stats
         run: |
-          STATS=$(curl -s -H "Authorization: Bearer ${{ secrets.GOATCOUNTER_API_TOKEN }}" \
-            "https://douglasforbesscott.goatcounter.com/api/v0/stats")
+          # Fetch stats with proper error handling
+          STATS=$(curl -s -w "\n%{http_code}" -H "Authorization: Bearer ${{ secrets.GOATCOUNTER_API_TOKEN }}" \
+            "https://douglasforbesscott.goatcounter.com/api/v0/stats/")
 
-          REFERRERS=$(curl -s -H "Authorization: Bearer ${{ secrets.GOATCOUNTER_API_TOKEN }}" \
+          HTTP_CODE=$(echo "$STATS" | tail -n1)
+          STATS_DATA=$(echo "$STATS" | head -n-1)
+
+          echo "Stats HTTP Code: $HTTP_CODE"
+          echo "Stats Response: $STATS_DATA"
+
+          REFERRERS=$(curl -s -w "\n%{http_code}" -H "Authorization: Bearer ${{ secrets.GOATCOUNTER_API_TOKEN }}" \
             "https://douglasforbesscott.goatcounter.com/api/v0/stats/referrers")
 
-          echo "Stats Response: $STATS"
-          echo "Referrers Response: $REFERRERS"
+          REF_HTTP_CODE=$(echo "$REFERRERS" | tail -n1)
+          REFERRERS_DATA=$(echo "$REFERRERS" | head -n-1)
 
-          TOTAL_VISITORS=$(echo "$STATS" | jq -r '.[0].count // 0' 2>/dev/null || echo "0")
-          UNIQUE_VISITORS=$(echo "$STATS" | jq -r 'map(.unique_count) | add // 0' 2>/dev/null || echo "0")
-          LINKEDIN_REFS=$(echo "$REFERRERS" | jq -r '.[] | select(.referrer | contains("linkedin")) | .count // 0' 2>/dev/null | awk '{s+=$1} END {print s}' || echo "0")
-          DAYS=$(echo "$STATS" | jq -r 'length // 1' 2>/dev/null || echo "1")
-          DAILY_AVG=$(echo "scale=1; $TOTAL_VISITORS / $DAYS" | bc 2>/dev/null || echo "0")
+          echo "Referrers HTTP Code: $REF_HTTP_CODE"
+          echo "Referrers Response: $REFERRERS_DATA"
+
+          # Parse stats - handle array response
+          TOTAL_VISITORS=$(echo "$STATS_DATA" | jq -r 'map(.count) | add // 0' 2>/dev/null || echo "0")
+          UNIQUE_VISITORS=$(echo "$STATS_DATA" | jq -r 'map(.unique_count) | add // 0' 2>/dev/null || echo "0")
+          LINKEDIN_REFS=$(echo "$REFERRERS_DATA" | jq -r '[.[] | select(.referrer | contains("linkedin")) | .count] | add // 0' 2>/dev/null || echo "0")
+          DAYS=$(echo "$STATS_DATA" | jq -r 'length // 1' 2>/dev/null || echo "1")
+
+          if [ "$DAYS" -gt 0 ] && [ "$TOTAL_VISITORS" -gt 0 ]; then
+            DAILY_AVG=$(echo "scale=1; $TOTAL_VISITORS / $DAYS" | bc 2>/dev/null || echo "0")
+          else
+            DAILY_AVG="0"
+          fi
 
           echo "total_visitors=$TOTAL_VISITORS" >> $GITHUB_OUTPUT
           echo "unique_visitors=$UNIQUE_VISITORS" >> $GITHUB_OUTPUT
           echo "linkedin_refs=$LINKEDIN_REFS" >> $GITHUB_OUTPUT
           echo "daily_avg=$DAILY_AVG" >> $GITHUB_OUTPUT
 
-          echo "Total: $TOTAL_VISITORS, Unique: $UNIQUE_VISITORS, LinkedIn: $LINKEDIN_REFS, Daily: $DAILY_AVG"
+          echo "Parsed - Total: $TOTAL_VISITORS, Unique: $UNIQUE_VISITORS, LinkedIn: $LINKEDIN_REFS, Days: $DAYS, Daily Avg: $DAILY_AVG"
 
       - name: Update README
         env:
@@ -57,22 +73,27 @@ jobs:
           with open('README.md', 'r') as f:
             content = f.read()
 
-          linkedin_val = linkedin if linkedin else '0'
-          analytics_section = '## Visitor Analytics\n\n| 👁️ Total | 👤 Unique | 🔗 LinkedIn | 📊 Daily |\n|:---:|:---:|:---:|:---:|\n| ' + total + ' | ' + unique + ' | ' + linkedin_val + ' | ' + daily + ' |'
+          # Build the analytics section
+          analytics_section = (
+              '## Visitor Analytics\n\n'
+              '| 👁️ Total | 👤 Unique | 🔗 LinkedIn | 📊 Daily |\n'
+              '|:---:|:---:|:---:|:---:|\n'
+              f'| {total} | {unique} | {linkedin} | {daily} |'
+          )
 
+          # Find and replace the analytics section
           if '## Visitor Analytics' in content:
-            start = content.find('## Visitor Analytics')
-            end = content.find('---', start)
-            if end == -1:
-              end = content.find('## Get in touch', start)
-            content = content[:start] + analytics_section + '\n\n' + content[end:]
+              # Match from ## Visitor Analytics to the next --- or ## Get in touch
+              pattern = r'(## Visitor Analytics\n\n.*?)(?=\n---|\n## Get in touch)'
+              content = re.sub(pattern, analytics_section, content, count=1, flags=re.DOTALL)
           else:
-            content = content.replace('## Get in touch', analytics_section + '\n\n## Get in touch')
+              # If section doesn't exist, add it before Get in touch
+              content = content.replace('## Get in touch', analytics_section + '\n\n---\n\n## Get in touch')
 
           with open('README.md', 'w') as f:
-            f.write(content)
+              f.write(content)
 
-          print("README updated successfully")
+          print(f"README updated: Total={total}, Unique={unique}, LinkedIn={linkedin}, Daily={daily}")
           PYTHON_EOF
 
       - name: Commit and push changes
