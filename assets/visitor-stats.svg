@@ -15,5 +15,5 @@
   <rect x="621" y="12" width="193" height="151" rx="8" fill="#252c37"/>
   <rect x="703" y="43" width="6" height="14" rx="1" fill="#3fb950"/><rect x="712" y="29" width="6" height="28" rx="1" fill="#f85149"/><rect x="721" y="36" width="6" height="21" rx="1" fill="#58a6ff"/>
   <text x="717" y="82" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10" fill="#8b949e" letter-spacing="1.5" font-weight="600">DAILY AVG</text>
-  <text x="717" y="130" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="40" font-weight="700" fill="#f0f6fc">.2</text>
+  <text x="717" y="130" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="40" font-weight="700" fill="#f0f6fc">0.2</text>
 </svg>
