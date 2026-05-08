@@ -60,7 +60,8 @@ jobs:
           total = os.environ.get('TOTAL_VISITORS', '0')
           unique = os.environ.get('UNIQUE_VISITORS', '0')
           linkedin = os.environ.get('LINKEDIN_REFS', '0')
-          daily = os.environ.get('DAILY_AVG', '0')
+          daily_raw = os.environ.get('DAILY_AVG', '0')
+          daily = daily_raw if not daily_raw.startswith('.') else '0' + daily_raw
 
           EYE_PATH    = 'M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z'
           PERSON_PATH = 'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'
