@@ -135,5 +135,7 @@ The broader BMS work spans control logic (function block, ladder, structured tex
 
 ---
 
-<!-- GoatCounter Analytics Tracking -->
+<!--
+GoatCounter Analytics Tracking
 <script data-goatcounter="https://douglasforbesscott.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+-->

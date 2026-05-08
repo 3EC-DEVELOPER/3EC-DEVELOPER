@@ -57,7 +57,7 @@ jobs:
           with open('README.md', 'r') as f:
             content = f.read()
 
-          analytics_section = '## Visitor Analytics\n\n| 👁️ Total Visitors | 👤 Unique | 🔗 LinkedIn | 📊 Daily Avg |\n|---|---|---|---|\n| ' + total + ' | ' + unique + ' | ' + linkedin + ' | ' + daily + ' |'
+          analytics_section = '## Visitor Analytics\n\n<div align="center">\n\n| 👁️ Total Visitors | 👤 Unique | 🔗 LinkedIn | 📊 Daily Avg |\n| --- | --- | --- | --- |\n| **' + total + '** | **' + unique + '** | **' + linkedin + '** | **' + daily + '** |\n\n</div>'
 
           if '## Visitor Analytics' in content:
             start = content.find('## Visitor Analytics')
