@@ -17,10 +17,20 @@ jobs:
         id: fetch-stats
         run: |
           RESPONSE=$(curl -s -H "Authorization: Bearer ${{ secrets.GOATCOUNTER_API_TOKEN }}" \
-            "https://douglasforbesscott.goatcounter.com/api/v0/stats/total")
+            "https://douglasforbesscott.goatcounter.com/api/v0/stats")
 
-          TOTAL_VISITORS=$(echo "$RESPONSE" | jq -r '.total_count')
-          UNIQUE_VISITORS=$(echo "$RESPONSE" | jq -r '.daily_count')
+          echo "API Response: $RESPONSE"
+
+          # Check if response is valid JSON
+          if ! echo "$RESPONSE" | grep -q '{'; then
+            echo "Warning: Invalid API response. Using default values."
+            echo "total_visitors=0" >> $GITHUB_OUTPUT
+            echo "unique_visitors=0" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          TOTAL_VISITORS=$(echo "$RESPONSE" | jq -r '.[0].count // 0')
+          UNIQUE_VISITORS=$(echo "$RESPONSE" | jq -r 'length // 0')
 
           echo "total_visitors=$TOTAL_VISITORS" >> $GITHUB_OUTPUT
           echo "unique_visitors=$UNIQUE_VISITORS" >> $GITHUB_OUTPUT
