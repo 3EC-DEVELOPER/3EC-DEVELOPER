@@ -123,10 +123,11 @@ The broader BMS work spans control logic (function block, ladder, structured tex
 
 ## Visitor Analytics
 
-<div align="center">
+| 👁️ Total | 👤 Unique | 🔗 LinkedIn | 📊 Daily |
+|:---:|:---:|:---:|:---:|
+| 0 | 0 | 0 | 0 |
 
-| 👁️ Total Visitors | 👤 Unique | 🔗 LinkedIn | 📊 Daily Avg |
-| --- | --- | --- | --- |
+--- | --- | --- | --- |
 | **0** | **0** | **** | **0** |
 
 </div>
