@@ -3,11 +3,11 @@
   <rect x="12" y="12" width="193" height="151" rx="8" fill="#252c37"/>
   <g transform="translate(94,29) scale(1.1667)" fill="#8b949e"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></g>
   <text x="108" y="82" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10" fill="#8b949e" letter-spacing="1.5" font-weight="600">TOTAL VISITORS</text>
-  <text x="108" y="130" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="40" font-weight="700" fill="#f0f6fc">0</text>
+  <text x="108" y="130" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="40" font-weight="700" fill="#f0f6fc">4</text>
   <rect x="215" y="12" width="193" height="151" rx="8" fill="#252c37"/>
   <g transform="translate(297,29) scale(1.1667)" fill="#8b949e"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></g>
   <text x="311" y="82" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10" fill="#8b949e" letter-spacing="1.5" font-weight="600">UNIQUE</text>
-  <text x="311" y="130" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="40" font-weight="700" fill="#f0f6fc">0</text>
+  <text x="311" y="130" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="40" font-weight="700" fill="#f0f6fc">1</text>
   <rect x="418" y="12" width="193" height="151" rx="8" fill="#252c37"/>
   <g transform="translate(500,29) scale(1.1667)" fill="#0A66C2" fill-rule="evenodd"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></g>
   <text x="514" y="82" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10" fill="#8b949e" letter-spacing="1.5" font-weight="600">LINKEDIN</text>
@@ -15,5 +15,5 @@
   <rect x="621" y="12" width="193" height="151" rx="8" fill="#252c37"/>
   <rect x="703" y="43" width="6" height="14" rx="1" fill="#3fb950"/><rect x="712" y="29" width="6" height="28" rx="1" fill="#f85149"/><rect x="721" y="36" width="6" height="21" rx="1" fill="#58a6ff"/>
   <text x="717" y="82" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10" fill="#8b949e" letter-spacing="1.5" font-weight="600">DAILY AVG</text>
-  <text x="717" y="130" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="40" font-weight="700" fill="#f0f6fc">0</text>
+  <text x="717" y="130" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="40" font-weight="700" fill="#f0f6fc">.2</text>
 </svg>
