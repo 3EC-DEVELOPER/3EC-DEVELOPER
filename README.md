@@ -123,7 +123,9 @@ The broader BMS work spans control logic (function block, ladder, structured tex
 
 ## Visitor Analytics
 
-<div style="display:inline-block;min-width:140px;padding:1.5rem;border-radius:8px;border:0.5px solid #ddd;margin:0 0.5rem;text-align:center;"><div style="font-size:28px;margin-bottom:0.75rem;">👁️</div><p style="margin:0 0 0.5rem 0;font-size:12px;font-weight:500;text-transform:uppercase;color:#666;">Total Visitors</p><p style="margin:0;font-size:32px;font-weight:500;color:#000;">0</p></div><div style="display:inline-block;min-width:140px;padding:1.5rem;border-radius:8px;border:0.5px solid #ddd;margin:0 0.5rem;text-align:center;"><div style="font-size:28px;margin-bottom:0.75rem;">👤</div><p style="margin:0 0 0.5rem 0;font-size:12px;font-weight:500;text-transform:uppercase;color:#666;">Unique</p><p style="margin:0;font-size:32px;font-weight:500;color:#000;">0</p></div><div style="display:inline-block;min-width:140px;padding:1.5rem;border-radius:8px;border:0.5px solid #ddd;margin:0 0.5rem;text-align:center;"><div style="font-size:28px;margin-bottom:0.75rem;">🔗</div><p style="margin:0 0 0.5rem 0;font-size:12px;font-weight:500;text-transform:uppercase;color:#666;">LinkedIn</p><p style="margin:0;font-size:32px;font-weight:500;color:#000;"></p></div><div style="display:inline-block;min-width:140px;padding:1.5rem;border-radius:8px;border:0.5px solid #ddd;margin:0 0.5rem;text-align:center;"><div style="font-size:28px;margin-bottom:0.75rem;">📊</div><p style="margin:0 0 0.5rem 0;font-size:12px;font-weight:500;text-transform:uppercase;color:#666;">Daily Avg</p><p style="margin:0;font-size:32px;font-weight:500;color:#000;">0</p></div>
+| 👁️ Total Visitors | 👤 Unique | 🔗 LinkedIn | 📊 Daily Avg |
+|---|---|---|---|
+| 0 | 0 |  | 0 |
 
 ---
 
