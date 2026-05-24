@@ -123,13 +123,14 @@ The broader BMS work spans control logic (function block, ladder, structured tex
 
 ## Visitor Analytics
 
-<img src="assets/visitor-stats.svg" alt="Visitor Analytics" />
+<img src="https://3ec-visitor-analytics.3ec-visitor-analytics.workers.dev/visitor-stats.svg" alt="Visitor Analytics" />
 
 ---
 
 ## Get in touch
 
 - **Web:** [www.3EC.co.uk](https://www.3ec.co.uk)
+- **LinkedIn:** [Connect on LinkedIn](https://3ec-visitor-analytics.3ec-visitor-analytics.workers.dev/r/linkedin)
 - **Email:** Douglas.Forbes-Scott@3EC.co.uk
 - **Operates in:** United Kingdom · South Africa · Brazil
 

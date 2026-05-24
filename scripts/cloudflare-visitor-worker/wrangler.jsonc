@@ -1,0 +1,16 @@
+{
+  "name": "3ec-visitor-analytics",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-05-24",
+  "vars": {
+    "PROFILE_NAME": "Douglas Forbes-Scott",
+    "LINKEDIN_URL": "https://www.linkedin.com/in/douglasforbes-scott-3ecltd"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "VISITOR_STATS_KV",
+      "id": "d5fe01fa80aa4563907fac6bc9b7c3fa",
+      "preview_id": "ab350f96fff448178b4893586a429844"
+    }
+  ]
+}
