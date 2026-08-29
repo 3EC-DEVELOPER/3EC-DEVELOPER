@@ -116,7 +116,7 @@ The broader BMS work spans control logic (function block, ladder, structured tex
 </p>
 
 <p>
-  <img src="https://streak-stats.demolab.com?user=3EC-DEVELOPER&theme=dark&hide_border=true&date_format=j%20M%5B%20Y%5D" />
+  <img src="./assets/github-streak.svg" alt="GitHub contribution streak" />
 </p>
 
 ---
