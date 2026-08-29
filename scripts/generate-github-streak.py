@@ -14,6 +14,22 @@ OUTPUT = Path(os.environ.get("STREAK_OUTPUT", "assets/github-streak.svg"))
 TOKEN = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
 GRAPHQL_URL = "https://api.github.com/graphql"
 
+FLAME_PATH = (
+    "M13.5 2.1c.5 3.2-1.1 4.6-2.8 6.2-1.5 1.4-2.9 2.8-2.9 5.3"
+    " 0 3.4 2.8 6.2 6.2 6.2s6.2-2.8 6.2-6.2c0-3.6-2.3-6.3-4.7-8.5"
+    ".1 1.9-.8 3.3-2.2 4.2.2-2.5-1.1-4.6-3.1-6.4z"
+)
+TROPHY_PATH = (
+    "M8 4h8v3h3v2a5 5 0 0 1-4.2 4.9A5.8 5.8 0 0 1 13 16.7V19h3v2H8v-2h3v-2.3"
+    "a5.8 5.8 0 0 1-1.8-2.8A5 5 0 0 1 5 9V7h3V4zm-1 5a3 3 0 0 0 1.7 2.7A8 8 0 0 1 8 9V8H7v1zm9 0"
+    "c0 .9-.2 1.8-.7 2.7A3 3 0 0 0 17 9V8h-1v1z"
+)
+GRAPH_PATHS = (
+    '<rect x="5" y="12" width="3" height="7" rx="1" fill="#3fb950"/>'
+    '<rect x="11" y="7" width="3" height="12" rx="1" fill="#58a6ff"/>'
+    '<rect x="17" y="4" width="3" height="15" rx="1" fill="#f85149"/>'
+)
+
 
 def iso_date(value):
     return value.isoformat() + "T00:00:00Z"
@@ -124,21 +140,29 @@ def render_svg(current, longest, total, first_active, last_active, generated_on)
     generated_text = generated_on.strftime("%d %b %Y")
 
     cards = [
-        ("CURRENT STREAK", f"{current}", "#3fb950", "days"),
-        ("LONGEST STREAK", f"{longest}", "#f85149", "days"),
-        ("YEARLY CONTRIBUTIONS", f"{total}", "#58a6ff", "total"),
+        ("CURRENT STREAK", f"{current}", "#ff9f1c", "days", "flame"),
+        ("LONGEST STREAK", f"{longest}", "#d29922", "days", "trophy"),
+        ("YEARLY CONTRIBUTIONS", f"{total}", "#58a6ff", "total", "graph"),
     ]
 
     card_svg = []
-    for index, (label, value, color, suffix) in enumerate(cards):
+    for index, (label, value, color, suffix, icon) in enumerate(cards):
         x = 12 + index * 272
         cx = x + 129
         font_size = 40 if len(value) <= 4 else 34 if len(value) <= 6 else 28
+        if icon == "graph":
+            icon_svg = f'<g transform="translate({cx - 12},32)">{GRAPH_PATHS}</g>'
+        else:
+            path = FLAME_PATH if icon == "flame" else TROPHY_PATH
+            icon_svg = (
+                f'<g transform="translate({cx - 14},28) scale(1.1667)" '
+                f'fill="{color}"><path d="{path}"/></g>'
+            )
         card_svg.append(
             f"""
   <rect x="{x}" y="12" width="257" height="151" rx="8" fill="#252c37"/>
-  <circle cx="{cx}" cy="44" r="10" fill="{color}" opacity="0.18"/>
-  <circle cx="{cx}" cy="44" r="5" fill="{color}"/>
+  <circle cx="{cx}" cy="44" r="21" fill="{color}" opacity="0.12"/>
+  {icon_svg}
   <text x="{cx}" y="78" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10" fill="#8b949e" letter-spacing="1.5" font-weight="600">{escape(label)}</text>
   <text x="{cx}" y="126" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="{font_size}" font-weight="700" fill="#f0f6fc">{escape(value)}</text>
   <text x="{cx}" y="148" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="11" fill="#8b949e">{escape(suffix)}</text>"""
