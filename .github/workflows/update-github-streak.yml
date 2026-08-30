@@ -21,6 +21,13 @@ jobs:
           GITHUB_LOGIN: 3EC-DEVELOPER
         run: python3 scripts/generate-github-streak.py
 
+      - name: Generate stats SVG
+        env:
+          PROFILE_STATS_TOKEN: ${{ secrets.PROFILE_STATS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_LOGIN: 3EC-DEVELOPER
+        run: python3 scripts/generate-github-stats.py
+
       - name: Generate language SVG
         env:
           PROFILE_STATS_TOKEN: ${{ secrets.PROFILE_STATS_TOKEN }}
@@ -33,10 +40,10 @@ jobs:
           git config user.email "Douglas.Forbes-Scott@3ec.co.uk"
           git config user.name "Douglas Forbes-Scott"
 
-          if git diff --quiet assets/github-streak.svg assets/top-languages.svg; then
+          if git diff --quiet assets/github-stats.svg assets/github-streak.svg assets/top-languages.svg; then
             echo "No card changes to commit"
           else
-            git add assets/github-streak.svg assets/top-languages.svg
+            git add assets/github-stats.svg assets/github-streak.svg assets/top-languages.svg
             git commit -m "chore: update github activity cards [skip ci]"
             git push
           fi
