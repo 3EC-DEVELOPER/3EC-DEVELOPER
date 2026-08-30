@@ -110,20 +110,23 @@ The broader BMS work spans control logic (function block, ladder, structured tex
 
 ## GitHub Activity
 
-<p>
-  <img src="https://github-readme-stats-chi-flame-79.vercel.app/api?username=3EC-DEVELOPER&show_icons=true&theme=dark&hide_border=true&count_private=true&rank_icon=github" height="165" />
-  <img src="https://github-readme-stats-chi-flame-79.vercel.app/api/top-langs/?username=3EC-DEVELOPER&layout=compact&theme=dark&hide_border=true&langs_count=6" height="165" />
+<p align="center">
+  <img src="https://github-readme-stats-chi-flame-79.vercel.app/api?username=3EC-DEVELOPER&show_icons=true&theme=dark&hide_border=true&count_private=true&rank_icon=github&card_width=830" alt="Douglas Forbes-Scott's GitHub stats" width="100%" />
 </p>
 
-<p>
-  <img src="./assets/github-streak.svg" alt="GitHub contribution streak" />
+<p align="center">
+  <img src="https://github-readme-stats-chi-flame-79.vercel.app/api/top-langs/?username=3EC-DEVELOPER&layout=compact&theme=dark&hide_border=true&langs_count=6&card_width=830" alt="Most used languages" width="100%" />
+</p>
+
+<p align="center">
+  <img src="./assets/github-streak.svg" alt="GitHub contribution streak" width="100%" />
 </p>
 
 ---
 
 ## Visitor Analytics
 
-<img src="https://3ec-visitor-analytics.3ec-visitor-analytics.workers.dev/visitor-stats.svg" alt="Visitor Analytics" />
+<img src="https://3ec-visitor-analytics.3ec-visitor-analytics.workers.dev/visitor-stats.svg" alt="Visitor Analytics" width="100%" />
 
 ---
 
