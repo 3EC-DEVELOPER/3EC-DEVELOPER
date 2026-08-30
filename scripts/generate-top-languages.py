@@ -151,7 +151,7 @@ def icon_svg(language, x, y):
             f'font-size="13" font-weight="700" fill="{language["color"]}">{letter}</text>'
         )
     return (
-        f'<g transform="translate({x},{y}) scale(0.75)" fill="{language["icon_color"]}">'
+        f'<g transform="translate({x},{y}) scale(1)" fill="{language["icon_color"]}">'
         f'<path d="{path}"/></g>'
     )
 
@@ -161,9 +161,9 @@ def render_svg(languages):
         languages = preserved_languages()
 
     bar_x = 32
-    bar_y = 86
+    bar_y = 98
     bar_width = 766
-    bar_height = 12
+    bar_height = 16
     current_x = bar_x
     bar_segments = []
     for index, language in enumerate(languages):
@@ -178,20 +178,20 @@ def render_svg(languages):
         current_x += width
 
     legend = []
-    positions = [(32, 128), (32, 160), (32, 192), (432, 128), (432, 160), (432, 192)]
+    positions = [(32, 150), (32, 190), (32, 230), (432, 150), (432, 190), (432, 230)]
     for language, (x, y) in zip(languages, positions):
         label = f'{language["name"]} {language["percent"]:.2f}%'
         legend.append(
-            f'<circle cx="{x + 8}" cy="{y - 5}" r="6" fill="{language["color"]}"/>'
-            f'{icon_svg(language, x + 24, y - 15)}'
-            f'<text x="{x + 52}" y="{y}" '
+            f'<circle cx="{x + 9}" cy="{y - 7}" r="8" fill="{language["color"]}"/>'
+            f'{icon_svg(language, x + 30, y - 25)}'
+            f'<text x="{x + 66}" y="{y}" '
             'font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" '
-            f'font-size="17" font-weight="500" fill="#c9d1d9">{escape(label)}</text>'
+            f'font-size="24" font-weight="600" fill="#c9d1d9">{escape(label)}</text>'
         )
 
-    return f"""<svg width="830" height="230" viewBox="0 0 830 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Most used languages">
-  <rect width="830" height="230" rx="6" fill="#151515"/>
-  <text x="32" y="48" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="27" font-weight="700" fill="#f0f6fc">Most Used Languages</text>
+    return f"""<svg width="830" height="270" viewBox="0 0 830 270" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Most used languages">
+  <rect width="830" height="270" rx="6" fill="#151515"/>
+  <text x="32" y="58" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="34" font-weight="700" fill="#f0f6fc">Most Used Languages</text>
   <g>
     {''.join(bar_segments)}
   </g>
