@@ -203,21 +203,21 @@ function renderSvg(stats: {
       centerX: 108,
       label: "TOTAL VISITORS",
       value: String(stats.totalVisitors),
-      icon: `<g transform="translate(94,29) scale(1.1667)" fill="#8b949e"><path d="${eyePath}"/></g>`,
+      icon: `<g transform="translate(89,25) scale(1.55)" fill="#8b949e"><path d="${eyePath}"/></g>`,
     },
     {
       x: 215,
       centerX: 311,
       label: "UNIQUE",
       value: String(stats.uniqueVisitors),
-      icon: `<g transform="translate(297,29) scale(1.1667)" fill="#8b949e"><path d="${personPath}"/></g>`,
+      icon: `<g transform="translate(292,25) scale(1.55)" fill="#8b949e"><path d="${personPath}"/></g>`,
     },
     {
       x: 418,
       centerX: 514,
       label: "LINKEDIN",
       value: String(stats.linkedinClicks),
-      icon: `<g transform="translate(500,29) scale(1.1667)" fill="#0A66C2" fill-rule="evenodd"><path d="${linkedinPath}"/></g>`,
+      icon: `<g transform="translate(495,25) scale(1.55)" fill="#0A66C2" fill-rule="evenodd"><path d="${linkedinPath}"/></g>`,
     },
     {
       x: 621,
@@ -225,9 +225,9 @@ function renderSvg(stats: {
       label: "DAILY AVG",
       value: stats.dailyAverage,
       icon:
-        '<rect x="703" y="43" width="6" height="14" rx="1" fill="#3fb950"/>' +
-        '<rect x="712" y="29" width="6" height="28" rx="1" fill="#f85149"/>' +
-        '<rect x="721" y="36" width="6" height="21" rx="1" fill="#58a6ff"/>',
+        '<rect x="699" y="41" width="8" height="18" rx="1.5" fill="#3fb950"/>' +
+        '<rect x="713" y="23" width="8" height="36" rx="1.5" fill="#f85149"/>' +
+        '<rect x="727" y="32" width="8" height="27" rx="1.5" fill="#58a6ff"/>',
     },
   ];
 
@@ -238,8 +238,8 @@ function renderSvg(stats: {
       return `
   <rect x="${card.x}" y="12" width="193" height="151" rx="8" fill="#252c37"/>
   ${card.icon}
-  <text x="${card.centerX}" y="82" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10" fill="#8b949e" letter-spacing="1.5" font-weight="600">${escapeXml(card.label)}</text>
-  <text x="${card.centerX}" y="130" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="${fontSize}" font-weight="700" fill="#f0f6fc">${escapeXml(card.value)}</text>`;
+  <text x="${card.centerX}" y="86" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="12" fill="#9aa4b2" letter-spacing="1.5" font-weight="800">${escapeXml(card.label)}</text>
+  <text x="${card.centerX}" y="136" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="${fontSize}" font-weight="800" fill="#f0f6fc">${escapeXml(card.value)}</text>`;
     })
     .join("");
 
@@ -251,14 +251,14 @@ function renderSvg(stats: {
 
 function getValueFontSize(value: string): number {
   if (value.length <= 4) {
-    return 40;
+    return 44;
   }
 
   if (value.length <= 6) {
-    return 32;
+    return 36;
   }
 
-  return 24;
+  return 28;
 }
 
 function escapeXml(value: string): string {
