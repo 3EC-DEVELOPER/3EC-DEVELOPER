@@ -252,7 +252,7 @@ def icon_svg(language, x, y):
             icon_size = 28
             scale = min(icon_size / width, icon_size / height)
             return (
-                f'<g transform="translate({x},{y - 2}) scale({scale:.4f}) '
+                f'<g transform="translate({x},{y}) scale({scale:.4f}) '
                 f'translate({-min_x:g},{-min_y:g})">{fragment["inner"]}</g>'
             )
 
@@ -269,6 +269,13 @@ def icon_svg(language, x, y):
         f'<g transform="translate({x},{y}) scale(1)" fill="{language["icon_color"]}">'
         f'<path d="{path}"/></g>'
     )
+
+
+def text_width(value):
+    wide_chars = sum(1 for char in value if char in "MW@#%&")
+    narrow_chars = sum(1 for char in value if char in "ilI.,:'")
+    normal_chars = len(value) - wide_chars - narrow_chars
+    return (wide_chars * 19) + (normal_chars * 14) + (narrow_chars * 7)
 
 
 def render_svg(languages):
@@ -303,13 +310,20 @@ def render_svg(languages):
         positions.append((32 + col * 400, 150 + row * row_gap))
 
     for language, (x, y) in zip(languages, positions):
-        label = f'{language["name"]} {language["percent"]:.2f}%'
+        name = language["name"]
+        percent = f'{language["percent"]:.2f}%'
+        name_x = x + 32
+        icon_x = name_x + text_width(name) + 14
+        percent_x = icon_x + 38
         legend.append(
             f'<circle cx="{x + 9}" cy="{y - 7}" r="8" fill="{language["color"]}"/>'
-            f'{icon_svg(language, x + 30, y - 27)}'
-            f'<text x="{x + 66}" y="{y}" '
+            f'<text x="{name_x}" y="{y}" '
             'font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" '
-            f'font-size="24" font-weight="600" fill="#c9d1d9">{escape(label)}</text>'
+            f'font-size="24" font-weight="600" fill="#c9d1d9">{escape(name)}</text>'
+            f'{icon_svg(language, icon_x, y - 24)}'
+            f'<text x="{percent_x}" y="{y}" '
+            'font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" '
+            f'font-size="24" font-weight="600" fill="#c9d1d9">{escape(percent)}</text>'
         )
 
     return f"""<svg width="830" height="{height}" viewBox="0 0 830 {height}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Most used languages">
