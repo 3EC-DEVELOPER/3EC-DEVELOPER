@@ -23,6 +23,7 @@ jobs:
 
       - name: Generate language SVG
         env:
+          PROFILE_STATS_TOKEN: ${{ secrets.PROFILE_STATS_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_LOGIN: 3EC-DEVELOPER
         run: python3 scripts/generate-top-languages.py

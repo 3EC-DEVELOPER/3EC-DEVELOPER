@@ -10,7 +10,8 @@ from pathlib import Path
 
 LOGIN = os.environ.get("GITHUB_LOGIN", "3EC-DEVELOPER")
 OUTPUT = Path(os.environ.get("LANGS_OUTPUT", "assets/top-languages.svg"))
-TOKEN = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
+PROFILE_TOKEN = os.environ.get("PROFILE_STATS_TOKEN")
+TOKEN = PROFILE_TOKEN or os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
 REST_URL = "https://api.github.com"
 LANGUAGE_LIMIT = 6
 MAX_DISPLAY_LANGUAGES = 8
@@ -135,12 +136,24 @@ def fetch_repos():
     repos = []
     page = 1
     while True:
-        batch = api_get(
-            f"{REST_URL}/users/{LOGIN}/repos?per_page=100&page={page}&type=owner&sort=updated"
-        )
+        if PROFILE_TOKEN:
+            url = (
+                f"{REST_URL}/user/repos?per_page=100&page={page}"
+                "&visibility=all&affiliation=owner&sort=updated"
+            )
+        else:
+            url = (
+                f"{REST_URL}/users/{LOGIN}/repos?per_page=100&page={page}"
+                "&type=owner&sort=updated"
+            )
+        batch = api_get(url)
         if not batch:
             break
-        repos.extend(repo for repo in batch if not repo.get("fork"))
+        repos.extend(
+            repo
+            for repo in batch
+            if not repo.get("fork") and repo.get("owner", {}).get("login", "").lower() == LOGIN.lower()
+        )
         page += 1
     return repos
 
@@ -262,6 +275,8 @@ def write_svg(svg):
 
 def main():
     try:
+        if not PROFILE_TOKEN:
+            print("PROFILE_STATS_TOKEN not set; using public repositories only", file=sys.stderr)
         languages = top_languages(fetch_language_totals())
         if not languages:
             raise RuntimeError("No language data returned")
