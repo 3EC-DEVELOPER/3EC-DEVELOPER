@@ -173,7 +173,7 @@ def row(icon_name, label, value, y):
     return f"""
     {icon(ROW_ICONS[icon_name], 32, y - 18)}
     <text x="74" y="{y}" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="24" font-weight="700" fill="#9E9E9E">{escape(label)}</text>
-    <text x="410" y="{y}" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="24" font-weight="700" fill="#9E9E9E">{escape(str(value))}</text>"""
+    <text x="560" y="{y}" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="24" font-weight="700" fill="#9E9E9E">{escape(str(value))}</text>"""
 
 
 def render_svg(stats):
@@ -187,11 +187,11 @@ def render_svg(stats):
     {row("issue", "Total Issues:", stats["issues"], 232)}
     {row("repo", "Contributed to (last year):", stats["contributed_last_year"], 274)}
   </g>
-  <g transform="translate(610, 67)">
-    <circle cx="88" cy="88" r="82" fill="none" stroke="#3e3e3e" stroke-width="11"/>
-    <path d="M88 6a82 82 0 0 1 56 22" fill="none" stroke="#d9d9d9" stroke-width="11" stroke-linecap="round"/>
-    <circle cx="88" cy="88" r="59" fill="#bdbdbd"/>
-    <g transform="translate(29, 27) scale(4.95)" fill="#151515">
+  <g transform="translate(575, 38)">
+    <circle cx="105" cy="105" r="96" fill="none" stroke="#3e3e3e" stroke-width="12"/>
+    <path d="M105 9a96 96 0 0 1 66 26" fill="none" stroke="#d9d9d9" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="105" cy="105" r="68" fill="#bdbdbd"/>
+    <g transform="translate(37, 35) scale(5.72)" fill="#151515">
       <path d="{GITHUB_PATH}"/>
     </g>
   </g>
