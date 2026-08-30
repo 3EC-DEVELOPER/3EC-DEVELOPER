@@ -58,6 +58,27 @@ LANGUAGE_META = {
 }
 
 FALLBACK_COLOR = "#8B949E"
+PINNED_LANGUAGES = [
+    ("Dart", 65.32),
+    ("Java", 23.73),
+    ("JavaScript", 6.19),
+    ("HTML", 1.98),
+    ("C++", 1.55),
+    ("CMake", 1.23),
+]
+
+
+def preserved_languages():
+    return [
+        {
+            "name": name,
+            "percent": percent,
+            "color": LANGUAGE_META.get(name, {}).get("color", FALLBACK_COLOR),
+            "icon_color": LANGUAGE_META.get(name, {}).get("icon_color", FALLBACK_COLOR),
+            "path": LANGUAGE_META.get(name, {}).get("path"),
+        }
+        for name, percent in PINNED_LANGUAGES
+    ]
 
 
 def api_get(url):
@@ -137,14 +158,7 @@ def icon_svg(language, x, y):
 
 def render_svg(languages):
     if not languages:
-        languages = [
-            {"name": "Dart", "percent": 65.32, **LANGUAGE_META["Dart"]},
-            {"name": "Java", "percent": 23.73, **LANGUAGE_META["Java"]},
-            {"name": "JavaScript", "percent": 6.19, **LANGUAGE_META["JavaScript"]},
-            {"name": "HTML", "percent": 1.98, **LANGUAGE_META["HTML"]},
-            {"name": "C++", "percent": 1.55, **LANGUAGE_META["C++"]},
-            {"name": "CMake", "percent": 1.23, **LANGUAGE_META["CMake"]},
-        ]
+        languages = preserved_languages()
 
     bar_x = 32
     bar_y = 86
@@ -194,17 +208,7 @@ def write_svg(svg):
 
 
 def main():
-    try:
-        languages = top_languages(fetch_language_totals())
-        if not languages:
-            raise RuntimeError("No language data returned")
-    except (RuntimeError, urllib.error.URLError, TimeoutError) as exc:
-        if OUTPUT.exists():
-            print(f"Keeping existing {OUTPUT}: {exc}", file=sys.stderr)
-            return 0
-        print(f"Could not fetch language data: {exc}", file=sys.stderr)
-        languages = []
-
+    languages = preserved_languages()
     write_svg(render_svg(languages))
     print("Generated language card: " + ", ".join(f"{l['name']} {l['percent']:.2f}%" for l in languages))
     return 0
