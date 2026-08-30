@@ -163,17 +163,16 @@ def render_svg(languages):
     bar_x = 32
     bar_y = 98
     bar_width = 766
-    bar_height = 16
+    bar_height = 22
     current_x = bar_x
     bar_segments = []
     for index, language in enumerate(languages):
         width = round(bar_width * language["percent"] / 100, 2)
         if index == len(languages) - 1:
             width = round(bar_x + bar_width - current_x, 2)
-        rx = 6 if index in (0, len(languages) - 1) else 0
         bar_segments.append(
             f'<rect x="{current_x:.2f}" y="{bar_y}" width="{width:.2f}" height="{bar_height}" '
-            f'rx="{rx}" fill="{language["color"]}"/>'
+            f'rx="0" fill="{language["color"]}"/>'
         )
         current_x += width
 
