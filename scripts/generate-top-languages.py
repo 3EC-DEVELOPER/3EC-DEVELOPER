@@ -181,6 +181,7 @@ def top_languages(totals):
         else:
             percent = dict(PINNED_LANGUAGES).get(name, 0)
         cards.append(language_card(name, percent, bytes_count))
+    cards.sort(key=lambda item: item["percent"], reverse=True)
     return cards
 
 
