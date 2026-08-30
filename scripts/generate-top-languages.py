@@ -309,11 +309,20 @@ def render_svg(languages):
         row = index % rows
         positions.append((32 + col * 400, 150 + row * row_gap))
 
+    max_name_width_by_col = {}
+    for language, (x, _) in zip(languages, positions):
+        col = (x - 32) // 400
+        max_name_width_by_col[col] = max(
+            max_name_width_by_col.get(col, 0),
+            text_width(language["name"]),
+        )
+
     for language, (x, y) in zip(languages, positions):
         name = language["name"]
         percent = f'{language["percent"]:.2f}%'
         name_x = x + 32
-        icon_x = name_x + text_width(name) + 14
+        col = (x - 32) // 400
+        icon_x = name_x + max_name_width_by_col[col] + 18
         percent_x = icon_x + 38
         legend.append(
             f'<circle cx="{x + 9}" cy="{y - 7}" r="8" fill="{language["color"]}"/>'
