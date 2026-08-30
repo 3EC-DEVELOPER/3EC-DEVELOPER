@@ -115,7 +115,7 @@ The broader BMS work spans control logic (function block, ladder, structured tex
 </p>
 
 <p align="center">
-  <img src="https://github-readme-stats-chi-flame-79.vercel.app/api/top-langs/?username=3EC-DEVELOPER&layout=compact&theme=dark&hide_border=true&langs_count=6&card_width=495" alt="Most used languages" width="100%" />
+  <img src="./assets/top-languages.svg" alt="Most used languages" width="100%" />
 </p>
 
 <p align="center">
