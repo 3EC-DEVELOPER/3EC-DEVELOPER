@@ -187,11 +187,11 @@ def render_svg(stats):
     {row("issue", "Total Issues:", stats["issues"], 232)}
     {row("repo", "Contributed to (last year):", stats["contributed_last_year"], 274)}
   </g>
-  <g transform="translate(615, 45)">
-    <circle cx="95" cy="95" r="87" fill="none" stroke="#3e3e3e" stroke-width="12"/>
-    <path d="M95 8a87 87 0 0 1 60 24" fill="none" stroke="#d9d9d9" stroke-width="12" stroke-linecap="round"/>
-    <circle cx="95" cy="95" r="63" fill="#bdbdbd"/>
-    <g transform="translate(32, 30) scale(5.28)" fill="#151515">
+  <g transform="translate(607, 75)">
+    <circle cx="100" cy="100" r="92" fill="none" stroke="#3e3e3e" stroke-width="12"/>
+    <path d="M100 8a92 92 0 0 1 63 25" fill="none" stroke="#d9d9d9" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="100" cy="100" r="66" fill="#bdbdbd"/>
+    <g transform="translate(34, 32) scale(5.52)" fill="#151515">
       <path d="{GITHUB_PATH}"/>
     </g>
   </g>
