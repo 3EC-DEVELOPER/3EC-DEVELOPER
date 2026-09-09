@@ -11,7 +11,8 @@ from pathlib import Path
 
 LOGIN = os.environ.get("GITHUB_LOGIN", "3EC-DEVELOPER")
 OUTPUT = Path(os.environ.get("STREAK_OUTPUT", "assets/github-streak.svg"))
-TOKEN = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
+PROFILE_TOKEN = os.environ.get("PROFILE_STATS_TOKEN")
+TOKEN = PROFILE_TOKEN or os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
 GRAPHQL_URL = "https://api.github.com/graphql"
 CARD_START = dt.date(2024, 4, 13)
 
@@ -36,7 +37,7 @@ def iso_end(value):
 
 def github_graphql(query, variables):
     if not TOKEN:
-        raise RuntimeError("GH_TOKEN or GITHUB_TOKEN is required to fetch contributions")
+        raise RuntimeError("PROFILE_STATS_TOKEN, GH_TOKEN, or GITHUB_TOKEN is required to fetch contributions")
 
     payload = {"query": query, "variables": variables}
     request = urllib.request.Request(
@@ -267,6 +268,8 @@ def write_svg(svg):
 
 def main():
     try:
+        if not PROFILE_TOKEN:
+            print("PROFILE_STATS_TOKEN not set; using public-access contribution data only", file=sys.stderr)
         days = fetch_contribution_days()
         stats = calculate_stats(days)
     except (RuntimeError, urllib.error.URLError, TimeoutError) as exc:
