@@ -142,12 +142,19 @@ def calculate_stats(days):
             running_start = None
 
     today = all_dates[-1]
+    yesterday = today - dt.timedelta(days=1)
     current = 0
     current_start = None
     current_end = None
+    streak_anchor = None
     if counts[today] > 0:
-        current_end = today
-        cursor = today
+        streak_anchor = today
+    elif counts.get(yesterday, 0) > 0:
+        streak_anchor = yesterday
+
+    if streak_anchor:
+        current_end = streak_anchor
+        cursor = streak_anchor
         while cursor in counts and counts[cursor] > 0:
             current += 1
             current_start = cursor
