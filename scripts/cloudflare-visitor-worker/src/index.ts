@@ -203,21 +203,21 @@ function renderSvg(stats: {
       centerX: 108,
       label: "TOTAL VISITORS",
       value: String(stats.totalVisitors),
-      icon: `<g transform="translate(89,25) scale(1.55)" fill="#8b949e"><path d="${eyePath}"/></g>`,
+      icon: `<g transform="translate(83,18) scale(2.0925)" fill="#3fb950"><path d="${eyePath}"/></g>`,
     },
     {
       x: 215,
       centerX: 311,
       label: "UNIQUE",
       value: String(stats.uniqueVisitors),
-      icon: `<g transform="translate(292,25) scale(1.55)" fill="#8b949e"><path d="${personPath}"/></g>`,
+      icon: `<g transform="translate(286,18) scale(2.0925)" fill="#ff2bd6"><path d="${personPath}"/></g>`,
     },
     {
       x: 418,
       centerX: 514,
       label: "LINKEDIN",
       value: String(stats.linkedinClicks),
-      icon: `<g transform="translate(495,25) scale(1.55)" fill="#0A66C2" fill-rule="evenodd"><path d="${linkedinPath}"/></g>`,
+      icon: `<g transform="translate(489,18) scale(2.0925)" fill="#0A66C2" fill-rule="evenodd"><path d="${linkedinPath}"/></g>`,
     },
     {
       x: 621,
@@ -225,9 +225,9 @@ function renderSvg(stats: {
       label: "DAILY AVG",
       value: stats.dailyAverage,
       icon:
-        '<rect x="699" y="41" width="8" height="18" rx="1.5" fill="#3fb950"/>' +
-        '<rect x="713" y="23" width="8" height="36" rx="1.5" fill="#f85149"/>' +
-        '<rect x="727" y="32" width="8" height="27" rx="1.5" fill="#58a6ff"/>',
+        '<rect x="693" y="37" width="11" height="24" rx="1.5" fill="#3fb950"/>' +
+        '<rect x="712" y="13" width="11" height="48" rx="1.5" fill="#f85149"/>' +
+        '<rect x="731" y="25" width="11" height="36" rx="1.5" fill="#58a6ff"/>',
     },
   ];
 
