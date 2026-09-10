@@ -340,7 +340,7 @@ def render_svg(languages):
         percent = format_percent(language["percent"])
         name_x = x + 32
         icon_x = x + 218
-        percent_x = x + 350
+        percent_x = x + 378
         legend.append(
             f'<circle cx="{x + 9}" cy="{y - 7}" r="8" fill="{language["color"]}"/>'
             f'<text x="{name_x}" y="{y}" '
