@@ -38,8 +38,8 @@ jobs:
 
       - name: Commit updated SVGs
         run: |
-          git config user.email "Douglas.Forbes-Scott@3ec.co.uk"
-          git config user.name "Douglas Forbes-Scott"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
 
           if git diff --quiet assets/github-stats.svg assets/github-streak.svg assets/top-languages.svg; then
             echo "No card changes to commit"
