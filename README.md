@@ -1,6 +1,6 @@
 # Douglas Forbes-Scott
 
-**Director & Lead Developer — [Three Energy Control Ltd (3EC)](https://www.3ec.co.uk)**  
+**Director & Lead Developer — [Three Energy Control Ltd (3EC)](https://www.3ec.co.uk?src=github)**  
 UK · South Africa · Brazil
 
 ---
@@ -104,7 +104,7 @@ The broader BMS work spans control logic (function block, ladder, structured tex
 
 - Custom Niagara N4 & N5 modules in Java — control logic components for BMS system houses
 - Flutter BMS interface toolkit — cross-platform dashboards and control GUIs (HVAC, pump sets, fault management) targeting Android, iOS, Windows, and macOS from a single codebase
-- [3EC.co.uk](https://www.3ec.co.uk) — company site built in Flutter Web with Firebase, deployed to web
+- [3EC.co.uk](https://www.3ec.co.uk?src=github) — company site built in Flutter Web with Firebase, deployed to web
 
 ---
 
@@ -132,7 +132,7 @@ The broader BMS work spans control logic (function block, ladder, structured tex
 
 ## Get in touch
 
-- **Web:** [www.3EC.co.uk](https://www.3ec.co.uk)
+- **Web:** [www.3EC.co.uk](https://www.3ec.co.uk?src=github)
 - **LinkedIn:** [Connect on LinkedIn](https://3ec-visitor-analytics.3ec-visitor-analytics.workers.dev/r/linkedin)
 - **Email:** Douglas.Forbes-Scott@3EC.co.uk
 - **Operates in:** United Kingdom · South Africa · Brazil
